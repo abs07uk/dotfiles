@@ -84,7 +84,7 @@ sudo apt-get update -y
 sudo apt-get install -y ca-certificates curl gnupg lsb-release unzip git jq bash-completion pipx
 
 # ---- Azure CLI (Microsoft apt repo) ------------------------------------------
-if ! have az; then
+if ! dpkg -s azure-cli >/dev/null 2>&1; then   # a Windows az.exe reached through WSL does not count
   log "Azure CLI"
   sudo mkdir -p /etc/apt/keyrings
   curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /etc/apt/keyrings/microsoft.gpg >/dev/null
